@@ -1,0 +1,640 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    margin-top: 0;
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+textarea {
+    width: calc(100% - 22px); /* Account for padding and border */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* TTS Section Specific Styling */
+.tts-section {
+    background-color: #e6e6fa; /* Lavender for TTS */
+    border-color: #d8bfd8;
+}
+
+.tts-section h3 {
+    color: #483d8b; /* Darker lavender/purple for title */
+    border-bottom-color: #d8bfd8;
+}
+
+.tts-section textarea.tts-text {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #d8bfd8;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.tts-options {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tts-options label {
+    font-weight: bold;
+    color: #555;
+}
+
+.tts-options select.tts-language-select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    flex-grow: 1;
+}
+
+.tts-audio-player-container {
+    margin-top: 10px;
+    min-height: 40px; /* Space for potential audio controls */
+}
+
+.tts-speak-button { /* Ensure it picks up general button styles or add specific ones if needed */
+    align-self: flex-start;
+}
+
+/* OCR Section Specific Styling */
+.ocr-section {
+    background-color: #fff0e6; /* Light orange/peach for OCR */
+    border-color: #ffdab9;
+}
+
+.ocr-section h3 {
+    color: #d2691e; /* Chocolate/brown for title */
+    border-bottom-color: #ffdab9;
+}
+
+.ocr-input-method {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.ocr-input-method label {
+    cursor: pointer;
+}
+
+.ocr-section input[type="url"].ocr-image-url,
+.ocr-section input[type="file"].ocr-file-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ffdab9;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.ocr-preview-area {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center; /* Center the preview image */
+}
+
+.ocr-preview-area h4 {
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.ocr-image-preview {
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    object-fit: contain; /* Ensures image aspect ratio is maintained */
+}
+
+.ocr-response-area pre.ocr-response-content {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    min-height: 50px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: monospace;
+    overflow-x: auto;
+}
+
+/* Info Section Specific Styling */
+.info-section {
+    background-color: #f5f5f5; /* Light grey for info sections */
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.info-section h3.info-title {
+    color: #333;
+    margin-top: 0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+}
+
+.info-section p.info-summary {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.info-section a.info-link {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #5cb85c; /* Green for link button */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.info-section a.info-link:hover {
+    background-color: #4cae4c;
+}
+
+/* Cloud Storage Section Specific Styling */
+.cloud-storage-section {
+    background-color: #f0f8ff; /* AliceBlue for cloud storage */
+    border: 1px solid #add8e6; /* LightBlue border */
+}
+
+.cloud-storage-section h3.storage-title {
+    color: #1e90ff; /* DodgerBlue for title */
+    border-bottom-color: #add8e6;
+}
+
+.storage-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.storage-controls input[type="file"].storage-file-input {
+    flex-grow: 1;
+    border: 1px solid #add8e6;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.storage-upload-button,
+.storage-refresh-list-button,
+.storage-file-list .file-action-button {
+    background-color: #1e90ff;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+/* Fetch API Section Specific Styling */
+.fetch-api-section {
+    background-color: #e0ffff; /* LightCyan for Fetch API */
+    border: 1px solid #afeeee; /* PaleTurquoise border */
+}
+
+.fetch-api-section h3.fetch-title {
+    color: #008b8b; /* DarkCyan for title */
+    border-bottom-color: #afeeee;
+}
+
+.fetch-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.fetch-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.fetch-input-group label {
+    font-weight: bold;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.fetch-api-section input[type="url"].fetch-url-input,
+.fetch-api-section select.fetch-method-select,
+.fetch-api-section textarea.fetch-headers-input,
+.fetch-api-section textarea.fetch-body-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #afeeee;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit; /* Ensure consistent font */
+}
+
+.fetch-api-section textarea {
+    resize: vertical;
+    min-height: 60px;
+    font-family: monospace; /* Good for JSON/code-like input */
+}
+
+.fetch-send-button {
+    background-color: #20b2aa; /* LightSeaGreen */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    align-self: flex-start;
+}
+
+.fetch-send-button:hover {
+    background-color: #1a908d;
+}
+
+.fetch-response-area {
+    margin-top: 20px;
+}
+
+.fetch-response-area h4,
+.fetch-response-area h5 {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.fetch-status-display {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.fetch-response-headers-content,
+.fetch-response-body-content {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    min-height: 80px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: monospace;
+    overflow-x: auto;
+    margin-bottom: 10px;
+}
+
+.fetch-status-message {
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+/* Key-Value Store Section Specific Styling */
+.kv-store-section {
+    background-color: #fafad2; /* LightGoldenrodYellow for KV store */
+    border: 1px solid #eee8aa; /* PaleGoldenrod border */
+}
+
+.kv-store-section h3.kv-title {
+    color: #b8860b; /* DarkGoldenrod for title */
+    border-bottom-color: #eee8aa;
+}
+
+.kv-controls,
+.kv-list-controls,
+.kv-incr-controls {
+    display: flex;
+    flex-direction: column; /* Stack inputs vertically */
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.kv-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px; /* Space above buttons */
+}
+
+.kv-store-section input[type="text"].kv-key-input,
+.kv-store-section textarea.kv-value-input,
+.kv-store-section input[type="text"].kv-list-prefix-input,
+.kv-store-section input[type="text"].kv-incr-key-input,
+.kv-store-section input[type="number"].kv-incr-amount-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #eee8aa;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.kv-store-section textarea.kv-value-input {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.kv-set-button,
+.kv-get-button,
+.kv-delete-button,
+.kv-list-button,
+.kv-incr-button {
+    background-color: #daa520; /* Goldenrod */
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    flex-grow: 1; /* Allow buttons to share space in .kv-buttons */
+}
+
+.kv-set-button:hover,
+.kv-get-button:hover,
+.kv-delete-button:hover,
+.kv-list-button:hover,
+.kv-incr-button:hover {
+    background-color: #b8860b; /* DarkGoldenrod */
+}
+
+.kv-output-area {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.kv-output-area h4 {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.kv-output-content {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    min-height: 80px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: monospace;
+    overflow-x: auto;
+}
+
+.kv-status-message {
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.storage-upload-button:hover,
+.storage-refresh-list-button:hover,
+.storage-file-list .file-action-button:hover {
+    background-color: #1c86ee;
+}
+
+.storage-file-list-container {
+    margin-top: 20px;
+}
+
+.storage-file-list-container h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+ul.storage-file-list {
+    list-style-type: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+ul.storage-file-list li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul.storage-file-list li:last-child {
+    border-bottom: none;
+}
+
+.storage-file-list .file-name {
+    word-break: break-all; /* Prevent long filenames from breaking layout */
+}
+.storage-file-list .file-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.storage-file-list .file-action-button.delete {
+    background-color: #dc3545; /* Red for delete */
+}
+.storage-file-list .file-action-button.delete:hover {
+    background-color: #c82333;
+}
+
+.storage-status-message {
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+#auth-section .user-info,
+#auth-section .auth-forms {
+    margin-bottom: 15px;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.success-message {
+    color: green;
+    margin-bottom: 10px;
+}
+
+#features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+/* AI Feature Section Styling */
+.ai-feature-section {
+    background-color: #e9f5ff; /* Light blue background for AI sections */
+    border: 1px solid #b3d7ff;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.ai-feature-section h3 {
+    color: #0056b3; /* Darker blue for AI titles */
+    margin-top: 0;
+    border-bottom: 1px solid #b3d7ff;
+    padding-bottom: 8px;
+}
+
+.ai-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.ai-controls textarea.ai-prompt {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #b3d7ff;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.ai-controls button.ai-submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.ai-controls button.ai-submit-button:hover {
+    background-color: #0056b3;
+}
+
+.ai-response-area {
+    margin-top: 15px;
+}
+
+.ai-response-area h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.ai-response-content {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    min-height: 50px;
+    white-space: pre-wrap; /* Allows text to wrap and preserves line breaks */
+    word-wrap: break-word; /* Breaks long words to prevent overflow */
+    font-family: monospace;
+    overflow-x: auto;
+}
+
+.ai-status-message {
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+/* OpenRouter Specific Styling */
+.openrouter-section {
+    background-color: #fffada; /* Light yellow for OpenRouter */
+    border-color: #f0e68c;
+}
+
+.openrouter-section h3 {
+    color: #b8860b; /* Darker yellow/brown for title */
+    border-bottom-color: #f0e68c;
+}
+
+.openrouter-model-selector {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.openrouter-model-selector label {
+    font-weight: bold;
+    color: #555;
+}
+
+.openrouter-model-selector select.openrouter-model-select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    flex-grow: 1; /* Allows select to take available space */
+}

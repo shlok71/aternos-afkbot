@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puter.js Feature Showcase</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Puter.js Feature Showcase</h1>
+    </header>
+    <main>
+        <section id="auth-section">
+            <h2>Authentication</h2>
+            <div id="auth-status-message">Puter.js status: Initializing...</div>
+            <div id="user-info" class="hidden">
+                <p>Welcome, <span id="username-display"></span>!</p>
+                <pre id="user-details-display" style="max-height: 100px; overflow-y: auto;"></pre>
+                <button id="logout-button">Logout</button>
+            </div>
+            <div id="auth-forms">
+                <p>Please sign in with your Puter.com account.</p>
+                <button id="login-button">Sign In / Sign Up</button>
+            </div>
+            <div id="auth-error-message" class="error-message hidden"></div>
+        </section>
+
+        <div id="features-grid">
+            <!-- Sections for other features will be dynamically added here by js/app.js -->
+        </div>
+
+        <!-- Template for AI Chat sections -->
+        <template id="ai-chat-template">
+            <section class="ai-feature-section">
+                <h3 class="ai-title">AI Model</h3>
+                <div class="ai-controls">
+                    <textarea class="ai-prompt" rows="3" placeholder="Enter your prompt here..."></textarea>
+                    <button class="ai-submit-button">Send</button>
+                </div>
+                <div class="ai-response-area">
+                    <h4>Response:</h4>
+                    <pre class="ai-response-content">Waiting for prompt...</pre>
+                </div>
+                <div class="ai-status-message"></div>
+                <div class="ai-error-message error-message hidden"></div>
+            </section>
+        </template>
+
+        <!-- Template for OpenRouter AI Chat sections -->
+        <template id="ai-openrouter-chat-template">
+            <section class="ai-feature-section openrouter-section">
+                <h3 class="ai-title">OpenRouter Chat</h3>
+                <div class="ai-controls">
+                    <div class="openrouter-model-selector">
+                        <label for="openrouter-model-select">Select Model:</label>
+                        <select class="openrouter-model-select">
+                            <!-- Options will be populated by JS -->
+                            <option value="openrouter:meta-llama/llama-3.1-8b-instruct">Meta Llama 3.1 (8B)</option>
+                            <option value="openrouter:mistralai/mistral-7b-instruct">Mistral 7B Instruct</option>
+                            <option value="openrouter:google/gemini-pro-1.5">Google Gemini Pro 1.5</option>
+                            <option value="openrouter:anthropic/claude-3.5-sonnet">Anthropic Claude 3.5 Sonnet</option>
+                            <option value="openrouter:openai/gpt-4o-mini">OpenAI GPT-4o Mini (via OpenRouter)</option>
+                        </select>
+                    </div>
+                    <textarea class="ai-prompt" rows="3" placeholder="Enter your prompt here..."></textarea>
+                    <button class="ai-submit-button">Send</button>
+                </div>
+                <div class="ai-response-area">
+                    <h4>Response:</h4>
+                    <pre class="ai-response-content">Waiting for prompt...</pre>
+                </div>
+                <div class="ai-status-message"></div>
+                <div class="ai-error-message error-message hidden"></div>
+            </section>
+        </template>
+
+        <!-- Template for AI Vision sections (e.g., Gemini Vision) -->
+        <template id="ai-vision-template">
+            <section class="ai-feature-section vision-section">
+                <h3 class="ai-title">AI Vision Model</h3>
+                <div class="ai-controls">
+                    <input type="url" class="ai-image-url" placeholder="Enter Image URL here...">
+                    <textarea class="ai-prompt" rows="2" placeholder="Enter your prompt (e.g., 'What do you see?')"></textarea>
+                    <button class="ai-submit-button">Analyze Image</button>
+                </div>
+                <div class="ai-response-area">
+                    <h4>Response:</h4>
+                    <pre class="ai-response-content">Waiting for image and prompt...</pre>
+                </div>
+                <div class="ai-status-message"></div>
+                <div class="ai-error-message error-message hidden"></div>
+            </section>
+        </template>
+
+        <!-- Template for AI Vision sections (e.g., Gemini Vision) -->
+        <template id="ai-vision-template">
+            <section class="ai-feature-section vision-section">
+                <h3 class="ai-title">AI Vision Model</h3>
+                <div class="ai-controls">
+                    <input type="url" class="ai-image-url" placeholder="Enter Image URL here...">
+                    <textarea class="ai-prompt" rows="2" placeholder="Enter your prompt (e.g., 'What do you see?')"></textarea>
+                    <button class="ai-submit-button">Analyze Image</button>
+                </div>
+                <div class="ai-response-area">
+                    <h4>Response:</h4>
+                    <pre class="ai-response-content">Waiting for image and prompt...</pre>
+                </div>
+                <div class="ai-status-message"></div>
+                <div class="ai-error-message error-message hidden"></div>
+            </section>
+        </template>
+
+        <!-- Template for OCR (Image-to-Text) sections -->
+        <template id="ai-ocr-template">
+            <section class="ai-feature-section ocr-section">
+                <h3 class="ai-title">OCR (Image to Text)</h3>
+                <div class="ai-controls">
+                    <div class="ocr-input-method">
+                        <label><input type="radio" name="ocr-input-type" value="url" checked> Image URL</label>
+                        <label><input type="radio" name="ocr-input-type" value="file"> Upload File</label>
+                    </div>
+                    <input type="url" class="ocr-image-url" placeholder="Enter Image URL here...">
+                    <input type="file" class="ocr-file-input" accept="image/*" style="display: none;">
+                    <button class="ai-submit-button ocr-extract-button">Extract Text</button>
+                </div>
+                <div class="ocr-preview-area">
+                    <h4>Preview:</h4>
+                    <img class="ocr-image-preview" src="#" alt="Image preview" style="max-width: 100%; max-height: 200px; display: none;">
+                </div>
+                <div class="ai-response-area ocr-response-area">
+                    <h4>Extracted Text:</h4>
+                    <pre class="ai-response-content ocr-response-content">Waiting for image...</pre>
+                </div>
+                <div class="ai-status-message"></div>
+                <div class="ai-error-message error-message hidden"></div>
+            </section>
+        </template>
+
+        <!-- Template for Informational Sections -->
+        <template id="info-section-template">
+            <section class="info-section">
+                <h3 class="info-title">Informational Topic</h3>
+                <p class="info-summary">Summary of the topic will go here.</p>
+                <a href="#" class="info-link" target="_blank" rel="noopener noreferrer">Read more...</a>
+            </section>
+        </template>
+
+        <!-- Template for Cloud Storage Section -->
+        <template id="cloud-storage-template">
+            <section class="feature-section cloud-storage-section">
+                <h3 class="storage-title">Cloud Storage</h3>
+                <div class="storage-controls">
+                    <input type="file" class="storage-file-input">
+                    <button class="storage-upload-button">Upload File</button>
+                </div>
+                <div class="storage-file-list-container">
+                    <h4>Your Files:</h4>
+                    <ul class="storage-file-list">
+                        <!-- Files will be listed here -->
+                    </ul>
+                    <button class="storage-refresh-list-button">Refresh List</button>
+                </div>
+                <div class="storage-status-message"></div>
+                <div class="storage-error-message error-message hidden"></div>
+            </section>
+        </template>
+
+        <!-- Template for Key-Value Store Section -->
+        <template id="kv-store-template">
+            <section class="feature-section kv-store-section">
+                <h3 class="kv-title">Key-Value Store</h3>
+                <div class="kv-controls">
+                    <input type="text" class="kv-key-input" placeholder="Enter Key">
+                    <textarea class="kv-value-input" rows="3" placeholder="Enter Value (JSON for objects/arrays)"></textarea>
+                    <div class="kv-buttons">
+                        <button class="kv-set-button">Set Value</button>
+                        <button class="kv-get-button">Get Value</button>
+                        <button class="kv-delete-button">Delete Key</button>
+                    </div>
+                </div>
+                <div class="kv-list-controls">
+                    <input type="text" class="kv-list-prefix-input" placeholder="List Prefix (e.g., user:*)">
+                    <button class="kv-list-button">List Keys</button>
+                </div>
+                <div class="kv-output-area">
+                    <h4>Result / Output:</h4>
+                    <pre class="kv-output-content">Output will appear here...</pre>
+                </div>
+                 <div class="kv-incr-controls">
+                    <input type="text" class="kv-incr-key-input" placeholder="Counter Key">
+                    <input type="number" class="kv-incr-amount-input" value="1" placeholder="Amount (default 1)">
+                    <button class="kv-incr-button">Increment Key</button>
+                </div>
+                <div class="kv-status-message"></div>
+                <div class="kv-error-message error-message hidden"></div>
+            </section>
+        </template>
+    </main>
+    <footer>
+        <p>Powered by Puter.js</p>
+    </footer>
+    <script src="https://js.puter.com/v2/"></script> <!-- Assuming this is the way to include puter.js based on typical usage -->
+    <script src="js/app.js"></script>
+</body>
+</html>
